@@ -50,15 +50,10 @@ public class MainActivity extends XBaseActivity<HomePresenter> implements IHomeV
         mHomeRecyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        presenter.getArticleList();
-    }
 
     @Override
     protected void initData() {
-
+        presenter.getArticleList();
     }
 
 
