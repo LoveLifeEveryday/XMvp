@@ -67,6 +67,8 @@ public class BaseApplication extends XMvp {
 
 ```
 
+> 注意：记得在 `manifest` 中指定 `Application` 
+
 #### 2.2.2 新建一个网络请求 `API`
 
 > `example` 如下
