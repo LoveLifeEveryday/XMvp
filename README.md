@@ -44,7 +44,7 @@ An easy to use MVP frame using in the Java
 
 > 注意：`butterknife-compiler` 一定要按照我给的版本号填写，以免出现版本不兼容的 `BUG`
 
-![image-20200428171045205](C:\Users\xucanyou666\AppData\Roaming\Typora\typora-user-images\image-20200428171045205.png)
+![](https://cdn.jsdelivr.net/gh/LoveLifeEveryday/FigureBed@master/typora202004/28/181010-454193.png)
 
 ```groovy
     implementation 'com.github.LoveLifeEveryday:XMvp:1.0.1'
