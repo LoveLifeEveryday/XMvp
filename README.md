@@ -328,6 +328,12 @@ public static void closeSoftKeyboard()
 
 > 上面的工具类说明，只是大致说明下主要方法，如果想要更详细了解的话，可以看下笔者的源码：[XMvp.Util](https://github.com/LoveLifeEveryday/XMvp/tree/master/library/src/main/java/com/xmvp/xcynice/util)
 
+## 完整示例 `Demo`
+
+> 口说无凭，笔者特别准备了一个 `Demo` 给各位读者，喜欢的可以去看下：[XMvpDemo](https://github.com/LoveLifeEveryday/XMvpDemo)
+
+![](https://imgkr.cn-bj.ufileos.com/1132fbb3-02bb-4f20-a7ec-384637cc66f9.png)
+
 ## How to create this
 
 如果你也想封装一套这样的框架的话，笔者特地写了一篇文章，里面阐述了笔者创建这套框架的思路
