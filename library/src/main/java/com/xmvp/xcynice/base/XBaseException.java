@@ -19,19 +19,19 @@ public class XBaseException extends IOException {
     /**
      * 网络问题
      */
-    public static final String BAD_NETWORK_MSG = "网络问题";
+    static final String BAD_NETWORK_MSG = "网络问题";
     /**
      * 连接错误
      */
-    public static final String CONNECT_ERROR_MSG = "连接错误";
+    static final String CONNECT_ERROR_MSG = "连接错误";
     /**
      * 连接超时
      */
-    public static final String CONNECT_TIMEOUT_MSG = "连接超时";
+    static final String CONNECT_TIMEOUT_MSG = "连接超时";
     /**
      * 未知错误
      */
-    public static final String OTHER_MSG = "未知错误";
+    static final String OTHER_MSG = "未知错误";
 
     private String errorMsg;
     private int errorCode;
@@ -48,7 +48,7 @@ public class XBaseException extends IOException {
         this.errorMsg = message;
     }
 
-    public XBaseException(String errorMsg, Throwable cause) {
+    XBaseException(String errorMsg, Throwable cause) {
         super(errorMsg, cause);
         this.errorMsg = errorMsg;
     }

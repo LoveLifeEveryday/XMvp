@@ -23,15 +23,20 @@ import java.util.Stack;
 @TargetApi(14)
 public class ActivityUtil {
     private static Stack<Activity> activityStack = new Stack<>();
-    private static final ActivityUtil.MyActivityLifecycleCallbacks instance = new ActivityUtil.MyActivityLifecycleCallbacks();
+    private static final ActivityUtil.MyActivityLifecycleCallbacks INSTANCE = new ActivityUtil.MyActivityLifecycleCallbacks();
 
     public ActivityUtil() {
     }
 
     public static ActivityLifecycleCallbacks getActivityLifecycleCallbacks() {
-        return instance;
+        return INSTANCE;
     }
 
+    /**
+     * 结束当前 activity
+     *
+     * @param activity activity
+     */
     public static void finishActivity(Activity activity) {
         if (activity != null) {
             activityStack.remove(activity);
@@ -44,7 +49,7 @@ public class ActivityUtil {
     /**
      * 不用 finish 当前 Activity 时直接调用此方法
      *
-     * @param classes
+     * @param classes 跳转到的 Activity 的 Class
      */
     public static void startActivity(Class classes) {
         startActivity(classes, false);

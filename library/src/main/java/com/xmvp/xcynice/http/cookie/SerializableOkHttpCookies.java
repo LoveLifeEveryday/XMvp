@@ -7,20 +7,25 @@ import java.io.Serializable;
 
 import okhttp3.Cookie;
 
+
 /**
- * Created by yechao on 2019/11/19/019.
- * Describe :
+ * Description : SerializableOkHttpCookies
+ *
+ * @author XuCanyou666
+ * @date 2020/4/28
  */
-public class SerializableOkHttpCookies implements Serializable {
+
+
+ class SerializableOkHttpCookies implements Serializable {
 
     private transient final Cookie cookies;
     private transient Cookie clientCookies;
 
-    public SerializableOkHttpCookies(Cookie cookies) {
+     SerializableOkHttpCookies(Cookie cookies) {
         this.cookies = cookies;
     }
 
-    public Cookie getCookies() {
+     Cookie getCookies() {
         Cookie bestCookies = cookies;
         if (clientCookies != null) {
             bestCookies = clientCookies;

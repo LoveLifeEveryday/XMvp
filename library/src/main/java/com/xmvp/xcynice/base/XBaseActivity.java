@@ -62,7 +62,7 @@ public abstract class XBaseActivity<P extends XBasePresenter> extends AppCompatA
 
     @Override
     public void showLoading() {
-        XUtil.showLoading(this, "加载中");
+        XUtil.showLoading(this,"加载中");
     }
 
     @Override

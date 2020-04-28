@@ -18,8 +18,7 @@ import retrofit2.HttpException;
  * @author XuCanyou666
  * @date 2020/2/7
  */
-
-
+@SuppressWarnings("ALL")
 public abstract class XBaseObserver<T> extends DisposableObserver<T> {
 
     protected XBaseView view;

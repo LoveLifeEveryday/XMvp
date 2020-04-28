@@ -9,9 +9,12 @@ import okhttp3.CookieJar;
 import okhttp3.HttpUrl;
 
 /**
- * Created by yechao on 2019/11/19/019.
- * Describe :
+ * Description : CookiesManager
+ *
+ * @author XuCanyou666
+ * @date 2020/4/28
  */
+
 public class CookiesManager implements CookieJar {
 
     private final PersistentCookieStore cookieStore;

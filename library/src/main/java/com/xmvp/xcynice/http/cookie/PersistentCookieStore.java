@@ -15,22 +15,25 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
 
 import okhttp3.Cookie;
 import okhttp3.HttpUrl;
 
 /**
- * Created by yechao on 2019/11/19/019.
- * Describe :
+ * Description : PersistentCookieStore
+ *
+ * @author XuCanyou666
+ * @date 2020/4/28
  */
 public class PersistentCookieStore {
     private static final String LOG_TAG = "PersistentCookieStore";
-    public static final String COOKIE_PREFS = "Cookies_Prefs";
+    private static final String COOKIE_PREFS = "Cookies_Prefs";
     private final Map<String, ConcurrentHashMap<String, Cookie>> cookies;
     private final SharedPreferences cookiePrefs;
 
-    public PersistentCookieStore(Context context) {
+    PersistentCookieStore(Context context) {
 
         cookiePrefs = context.getSharedPreferences(COOKIE_PREFS, 0);
         cookies = new ArrayMap<>();
@@ -45,9 +48,9 @@ public class PersistentCookieStore {
                     Cookie decodedCookie = decodeCookie(encodedCookie);
                     if (decodedCookie != null) {
                         if (!cookies.containsKey(entry.getKey())) {
-                            cookies.put(entry.getKey(), new ConcurrentHashMap<String, Cookie>());
+                            cookies.put(entry.getKey(), new ConcurrentHashMap<>());
                         }
-                        cookies.get(entry.getKey()).put(name, decodedCookie);
+                        Objects.requireNonNull(cookies.get(entry.getKey())).put(name, decodedCookie);
                     }
                 }
             }
@@ -55,23 +58,23 @@ public class PersistentCookieStore {
 
     }
 
-    protected String getCookieToken(Cookie cookie) {
+    private String getCookieToken(Cookie cookie) {
         return cookie.name() + "@" + cookie.domain();
     }
 
-    public void add(HttpUrl url, Cookie cookie) {
+    void add(HttpUrl url, Cookie cookie) {
         String name = getCookieToken(cookie);
 
         //将cookies缓存到内存中 如果缓存过期 就重置此cookie
         if (!cookie.persistent()) {
             if (!cookies.containsKey(url.host())) {
-                cookies.put(url.host(), new ConcurrentHashMap<String, Cookie>());
+                cookies.put(url.host(), new ConcurrentHashMap<>());
             }
-            cookies.get(url.host()).put(name, cookie);
+            Objects.requireNonNull(cookies.get(url.host())).put(name, cookie);
         } else {
             if (cookies.containsKey(url.host())) {
                 if (cookies.get(url.host()) != null) {
-                    cookies.get(url.host()).remove(name);
+                    Objects.requireNonNull(cookies.get(url.host())).remove(name);
                 }
             }
         }
@@ -80,16 +83,16 @@ public class PersistentCookieStore {
 
             //讲cookies持久化到本地
             SharedPreferences.Editor prefsWriter = cookiePrefs.edit();
-            prefsWriter.putString(url.host(), TextUtils.join(",", cookies.get(url.host()).keySet()));
+            prefsWriter.putString(url.host(), TextUtils.join(",", Objects.requireNonNull(cookies.get(url.host())).keySet()));
             prefsWriter.putString(name, encodeCookie(new SerializableOkHttpCookies(cookie)));
             prefsWriter.apply();
         }
     }
 
-    public List<Cookie> get(HttpUrl url) {
+    List<Cookie> get(HttpUrl url) {
         ArrayList<Cookie> ret = new ArrayList<>();
         if (cookies.containsKey(url.host())) {
-            ret.addAll(cookies.get(url.host()).values());
+            ret.addAll(Objects.requireNonNull(cookies.get(url.host())).values());
         }
         return ret;
     }
@@ -105,14 +108,14 @@ public class PersistentCookieStore {
     public boolean remove(HttpUrl url, Cookie cookie) {
         String name = getCookieToken(cookie);
 
-        if (cookies.containsKey(url.host()) && cookies.get(url.host()).containsKey(name)) {
-            cookies.get(url.host()).remove(name);
+        if (cookies.containsKey(url.host()) && Objects.requireNonNull(cookies.get(url.host())).containsKey(name)) {
+            Objects.requireNonNull(cookies.get(url.host())).remove(name);
 
             SharedPreferences.Editor prefsWriter = cookiePrefs.edit();
             if (cookiePrefs.contains(name)) {
                 prefsWriter.remove(name);
             }
-            prefsWriter.putString(url.host(), TextUtils.join(",", cookies.get(url.host()).keySet()));
+            prefsWriter.putString(url.host(), TextUtils.join(",", Objects.requireNonNull(cookies.get(url.host())).keySet()));
             prefsWriter.apply();
 
             return true;
@@ -124,7 +127,7 @@ public class PersistentCookieStore {
     public List<Cookie> getCookies() {
         ArrayList<Cookie> ret = new ArrayList<>();
         for (String key : cookies.keySet()) {
-            ret.addAll(cookies.get(key).values());
+            ret.addAll(Objects.requireNonNull(cookies.get(key)).values());
         }
         return ret;
     }
@@ -135,7 +138,7 @@ public class PersistentCookieStore {
      * @param cookie 要序列化的cookie
      * @return 序列化之后的string
      */
-    protected String encodeCookie(SerializableOkHttpCookies cookie) {
+    private String encodeCookie(SerializableOkHttpCookies cookie) {
         if (cookie == null) {
             return null;
         }
@@ -157,7 +160,7 @@ public class PersistentCookieStore {
      * @param cookieString cookies string
      * @return cookie object
      */
-    protected Cookie decodeCookie(String cookieString) {
+    private Cookie decodeCookie(String cookieString) {
         byte[] bytes = hexStringToByteArray(cookieString);
         ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(bytes);
         Cookie cookie = null;
@@ -179,7 +182,7 @@ public class PersistentCookieStore {
      * @param bytes byte array to be converted
      * @return string containing hex values
      */
-    protected String byteArrayToHexString(byte[] bytes) {
+    private String byteArrayToHexString(byte[] bytes) {
         StringBuilder sb = new StringBuilder(bytes.length * 2);
         for (byte element : bytes) {
             int v = element & 0xff;
@@ -197,7 +200,7 @@ public class PersistentCookieStore {
      * @param hexString string of hex-encoded values
      * @return decoded byte array
      */
-    protected byte[] hexStringToByteArray(String hexString) {
+    private byte[] hexStringToByteArray(String hexString) {
         int len = hexString.length();
         byte[] data = new byte[len / 2];
         for (int i = 0; i < len; i += 2) {

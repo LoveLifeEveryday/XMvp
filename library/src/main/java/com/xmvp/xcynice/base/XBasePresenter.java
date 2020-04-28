@@ -1,7 +1,5 @@
 package com.xmvp.xcynice.base;
 
-import com.xmvp.xcynice.XBaseRetrofitConfig;
-import com.xmvp.xcynice.http.API;
 import com.xmvp.xcynice.http.RetrofitService;
 
 import io.reactivex.Observable;
@@ -23,7 +21,6 @@ public class XBasePresenter<V extends XBaseView> {
     public V baseView;
 
 
-
     protected RetrofitService retrofitService = RetrofitService.getInstance();
 
     public XBasePresenter(V baseView) {
@@ -33,7 +30,7 @@ public class XBasePresenter<V extends XBaseView> {
     /**
      * 解除绑定
      */
-    public void detachView() {
+    void detachView() {
         baseView = null;
         removeDisposable();
     }
@@ -41,12 +38,11 @@ public class XBasePresenter<V extends XBaseView> {
     /**
      * 返回 view
      */
-    @SuppressWarnings("all")
     public V getBaseView() {
         return baseView;
     }
 
-    public void addDisposable(Observable<?> observable, XBaseObserver observer) {
+    protected void addDisposable(Observable<?> observable, XBaseObserver observer) {
         if (compositeDisposable == null) {
             compositeDisposable = new CompositeDisposable();
         }

@@ -80,7 +80,7 @@ public abstract class XBaseFragment<P extends XBasePresenter> extends Fragment i
      */
     @Override
     public void showLoading() {
-        XUtil.showLoading(ActivityUtil.getCurrentActivity(), "加载中");
+        XUtil.showLoading("加载中");
     }
 
     /**

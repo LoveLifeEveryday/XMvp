@@ -6,7 +6,6 @@ import android.app.Application;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.ProgressBar;
 
 
 /**
@@ -17,7 +16,6 @@ import android.widget.ProgressBar;
 public class XUtil {
     private static Application mApplicationContext;
     private static ProgressDialog progressDialog;
-    private static ProgressBar progressBar;
 
     public static void initialize(Application app) {
         mApplicationContext = app;
@@ -27,15 +25,25 @@ public class XUtil {
         return mApplicationContext;
     }
 
+
+    /**
+     * 在当前 activity 显示加载中
+     * @param msg 信息
+     */
     public static void showLoading(String msg) {
         progressDialog = ProgressDialog.show(ActivityUtil.getCurrentActivity(), "", msg, true, true);
-        progressDialog.setCanceledOnTouchOutside(false);
+        progressDialog.setCanceledOnTouchOutside(true);
         progressDialog.show();
     }
 
+    /**
+     * 在指定 activity 显示加载中
+     * @param activity activity
+     * @param msg 信息
+     */
     public static void showLoading(Activity activity, String msg) {
         progressDialog = ProgressDialog.show(activity, "", msg, true, true);
-        progressDialog.setCanceledOnTouchOutside(false);
+        progressDialog.setCanceledOnTouchOutside(true);
         progressDialog.show();
     }
 

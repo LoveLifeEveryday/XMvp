@@ -1,18 +1,13 @@
 package com.xmvp.xcynice.util;
 
 
+import android.util.Log;
+
 /**
  * @Author xucanyou666
  * @Date 2020/4/27 09:28
  * email：913710642@qq.com
  */
-//
-// Source code recreated from a .class file by IntelliJ IDEA
-// (powered by Fernflower decompiler)
-//
-
-
-import android.util.Log;
 
 public class LogUtil {
     private static String TAG = "LogUtil";

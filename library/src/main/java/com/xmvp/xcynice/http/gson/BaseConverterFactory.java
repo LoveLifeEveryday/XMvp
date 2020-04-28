@@ -12,17 +12,21 @@ import okhttp3.ResponseBody;
 import retrofit2.Converter;
 import retrofit2.Retrofit;
 
+
 /**
- * Created by yechao on 2019/11/18/018.
- * Describe :
+ * Description : BaseConverterFactory
+ *
+ * @author XuCanyou666
+ * @date 2020/4/28
  */
+
 public class BaseConverterFactory extends Converter.Factory {
 
     public static BaseConverterFactory create() {
         return create(new Gson());
     }
 
-    @SuppressWarnings("ConstantConditions")
+    @SuppressWarnings("all")
     public static BaseConverterFactory create(Gson gson) {
         if (gson == null) {
             throw new NullPointerException("gson == null");

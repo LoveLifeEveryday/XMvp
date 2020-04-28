@@ -4,6 +4,8 @@ package com.xmvp.xcynice.util;
 import android.content.SharedPreferences;
 
 /**
+ * sharedPreferences Util
+ *
  * @Author xucanyou666
  * @Date 2020/4/27 11:38
  * email：913710642@qq.com

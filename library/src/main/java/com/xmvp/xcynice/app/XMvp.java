@@ -29,6 +29,6 @@ public class XMvp {
         LogUtil.setIsLog(true);
         //注册Activity生命周期
         application.registerActivityLifecycleCallbacks(ActivityUtil.getActivityLifecycleCallbacks());
-        XBaseRetrofitConfig.setxBaseUrl(baseUrl);
+        XBaseRetrofitConfig.setBaseUrl(baseUrl);
     }
 }
