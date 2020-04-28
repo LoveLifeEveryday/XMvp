@@ -1,5 +1,7 @@
 apply plugin: 'com.android.library'
-
+//添加下面两行
+apply plugin: 'com.github.dcendents.android-maven'
+group='com.github.LoveLifeEveryday'
 android {
     compileSdkVersion 29
 
