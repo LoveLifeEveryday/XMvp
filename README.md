@@ -27,7 +27,7 @@ Add it in your root build.gradle at the end of repositories:
 
 ```groovy
 	dependencies {
-	        implementation 'com.github.LoveLifeEveryday:XMvp:Tag'
+	        implementation 'com.github.LoveLifeEveryday:XMvp:1.0.0'
 	}
 ```
 
