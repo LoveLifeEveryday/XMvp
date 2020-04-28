@@ -13,22 +13,30 @@ import com.xmvp.xcynice.util.XUtil;
  * @Date 2020/4/27 15:08
  * email：913710642@qq.com
  */
-public class XMvp {
+public abstract class XMvp extends Application {
+    protected String mBaseUrl;
 
+
+    public abstract String initBaseUrl();
+
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        mBaseUrl = initBaseUrl();
+        init();
+    }
 
     /**
      * 初始化 application
-     *
-     * @param application application
-     * @param baseUrl     baseUrl
      */
-    public static void init(Application application, String baseUrl) {
+    public void init() {
         //初始化
-        XUtil.initialize(application);
+        XUtil.initialize(this);
         //设置打印开关
         LogUtil.setIsLog(true);
         //注册Activity生命周期
-        application.registerActivityLifecycleCallbacks(ActivityUtil.getActivityLifecycleCallbacks());
-        XBaseRetrofitConfig.setBaseUrl(baseUrl);
+        registerActivityLifecycleCallbacks(ActivityUtil.getActivityLifecycleCallbacks());
+        XBaseRetrofitConfig.setBaseUrl(mBaseUrl);
     }
 }

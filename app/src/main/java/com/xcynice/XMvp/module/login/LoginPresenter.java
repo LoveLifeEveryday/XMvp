@@ -58,7 +58,6 @@ class LoginPresenter extends XBasePresenter<ILoginView> {
         } else {
             baseView.showLoginFailed("填写错误 (°∀°)ﾉ");
         }
-
     }
 
 
