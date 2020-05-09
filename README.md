@@ -6,7 +6,7 @@ An easy to use MVP frame using in the Java
 
 这是一个基于 `Java` 的简单易用，利用快速开发的 `MVP` 框架
 
-[![](https://jitpack.io/v/LoveLifeEveryday/XMvp.svg)](https://jitpack.io/#LoveLifeEveryday/XMvp)![Hex.pm badge](https://img.shields.io/badge/license-Apache%202-blue)![GitHub release (latest by date)](https://img.shields.io/github/v/release/LoveLifeEveryday/XPermissions)
+[![](https://jitpack.io/v/LoveLifeEveryday/XMvp.svg)](https://jitpack.io/#LoveLifeEveryday/XMvp)![Hex.pm badge](https://img.shields.io/badge/license-Apache%202-blue)![GitHub release (latest by date)](https://img.shields.io/github/v/release/LoveLifeEveryday/XMvp)
 
 
 
@@ -47,7 +47,7 @@ An easy to use MVP frame using in the Java
 ![](https://cdn.jsdelivr.net/gh/LoveLifeEveryday/FigureBed@master/typora202004/28/181010-454193.png)
 
 ```groovy
-    implementation 'com.github.LoveLifeEveryday:XMvp:1.0.1'
+    implementation 'com.github.LoveLifeEveryday:XMvp:1.0.2'
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.0'
 ```
 
