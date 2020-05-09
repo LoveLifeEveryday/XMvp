@@ -11,6 +11,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
+import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 /**
  * Description : RetrofitService
@@ -61,6 +62,7 @@ public class RetrofitService {
         //关联okHttp并加上rxJava和Gson的配置和baseUrl
         mRetrofit = new Retrofit.Builder()
                 .client(okHttpClient)
+                .addConverterFactory(ScalarsConverterFactory.create())
                 .addConverterFactory(BaseConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .baseUrl(XBaseRetrofitConfig.getBaseUrl())

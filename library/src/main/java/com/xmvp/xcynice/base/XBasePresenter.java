@@ -42,6 +42,7 @@ public class XBasePresenter<V extends XBaseView> {
         return baseView;
     }
 
+    @SuppressWarnings("unchecked")
     protected void addDisposable(Observable<?> observable, XBaseObserver observer) {
         if (compositeDisposable == null) {
             compositeDisposable = new CompositeDisposable();
